@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Linq;
 
+
 namespace NumberHelper
 {
     public class NumberHelper
@@ -43,6 +44,12 @@ namespace NumberHelper
         }
         public static void InsertNumber(int firstIntNumber, int secondIntNumber, int i, int j)
         {
+            if(i<0 || j<0)
+            {
+                throw new ArgumentException("The bit position can't be less than 0");
+            }
+
+           
             int[] supportArrayFirst = IntToBiteArray(firstIntNumber);
             int[] supportArraySecond = IntToBiteArray(secondIntNumber);
 
