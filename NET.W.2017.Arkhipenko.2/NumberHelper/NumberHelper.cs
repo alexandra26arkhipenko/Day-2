@@ -7,7 +7,7 @@ namespace NumberHelper
 {
     public class NumberHelper
     {
-        public static int[] IntToBiteArray(int number)
+        private static int[] IntToBiteArray(int number)
         {
             BitArray b = new BitArray(new int[] { number });
             var bitArray = new int[b.Count];
@@ -26,7 +26,7 @@ namespace NumberHelper
 
             return bitArray;
         }
-        public static int BitStringToInt(string bits)
+        private static int BitStringToInt(string bits)
         {
             var reversedBits = bits.Reverse().ToArray();
             var num = 0;
