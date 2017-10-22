@@ -26,18 +26,8 @@ namespace NumberHelper.Tests
         {
             
             Assert.AreEqual(NumberHelper.InsertNumber(15, 15, 0, 0), 15);
-        }
-        [TestMethod]
-        public void InsertNumberTest2()
-        {
-
-            Assert.AreEqual(NumberHelper.InsertNumber(8, 15, 0, 0), 9);
-        }
-        [TestMethod]
-        public void InsertNumberTest3()
-        {
-
             Assert.AreEqual(NumberHelper.InsertNumber(8, 15, 3, 8), 120);
         }
+        
     }
 }
