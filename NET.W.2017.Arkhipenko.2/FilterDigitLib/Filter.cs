@@ -8,10 +8,6 @@ namespace FilterDigitLib
     {
         public static ArrayList FilterDigit(int  number, params int[] listInts)
         {
-            if (number < 0 && number > 9)
-            {
-                throw new ArgumentException();
-            }
             if (listInts.Length == 0)
             {
                 throw new ArgumentException();

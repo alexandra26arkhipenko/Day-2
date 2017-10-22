@@ -42,7 +42,7 @@ namespace NumberHelper
 
             return num;
         }
-        public static void InsertNumber(int firstIntNumber, int secondIntNumber, int i, int j)
+        public static int InsertNumber(int firstIntNumber, int secondIntNumber, int i, int j)
         {
             if(i<0 || j<0)
             {
@@ -72,7 +72,7 @@ namespace NumberHelper
             {
                 supportArrayFirstToString = supportArrayFirstToString + supportArrayFirst[l];
             }
-            
+            return BitStringToInt(supportArrayFirstToString);
 
         }
     }

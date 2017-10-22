@@ -14,8 +14,11 @@ namespace NewtonMethod
                 x0 = x1;
                 x1 = (1 / n) * ((n - 1) * x0 + number / Math.Pow(x0, n - 1));
             }
-
-            return x1;
+            if (eps > 0.01)
+            {
+                return Math.Round(x1, 1);
+            }
+            else return Math.Round(x1, 5);
         }
     }
 }
