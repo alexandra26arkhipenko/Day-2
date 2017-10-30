@@ -5,20 +5,35 @@ using System.Diagnostics;
 
 namespace Seeker
 {
+    /// <summary>
+    /// class Seeker takes a integer and 
+    /// returns the largest integer consisting of the digits of the original number,
+    /// and - 1 (null), if there is no such number
+    /// </summary>
     public class Seeker
     {
-        
-        public static Tuple<int, TimeSpan > FindNextBiggerNumber(int number)
+        /// <summary>
+        /// 
+        /// method FindNextBiggerNumber takes a integer and 
+        /// returns the largest integer consisting of the digits of the original number,
+        /// and - 1 (null), if there is no such number
+        /// </summary>
+        /// <param name="number"></param>
+        /// <returns>Int32 , Time(double) </returns>
+
+        #region public
+        public static Tuple<int, double > FindNextBiggerNumber(int number)
         {
             if (number < 0)
             {
                 throw new ArgumentException("The number can't be < 0 ");
             }
             Stopwatch stopwatch = new Stopwatch();
-            char[] numberChar = number.ToString().ToCharArray();
             stopwatch.Start();
 
-            for (int i =(int)number + 1; i < Math.Pow(10,numberChar.Length); i++)
+            char[] numberChar = number.ToString().ToCharArray();           
+
+            for (int i = number + 1; i < Math.Pow(10,numberChar.Length); i++)
             {
                 int key = 0;
                 string iString = i.ToString();
@@ -34,7 +49,7 @@ namespace Seeker
                 if (key == numberChar.Length)
                 {
                     stopwatch.Stop();
-                    TimeSpan time1 = stopwatch.Elapsed;
+                    double time1 = stopwatch.Elapsed.Milliseconds;
                    
                     return Tuple.Create(i, time1);
 
@@ -42,10 +57,10 @@ namespace Seeker
             }
 
             stopwatch.Stop();
-            TimeSpan time2 = stopwatch.Elapsed;
-            string time2toString = time2.ToString();
+            double time2 = stopwatch.Elapsed.Milliseconds;
             return Tuple.Create(-1, time2);
            
         }
+         #endregion
     }
 }

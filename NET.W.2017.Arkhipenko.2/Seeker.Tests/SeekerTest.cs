@@ -21,7 +21,7 @@ namespace Seeker.Tests
         [TestMethod]
         public void FindNextBiggerNumberTestTime()
         {
-            Assert.IsFalse(Seeker.FindNextBiggerNumber(144).Item2 == null);
+            Assert.IsFalse(Seeker.FindNextBiggerNumber(144).Item2 == 0);
         }
 
         [TestMethod]

@@ -5,75 +5,39 @@ using System.Linq;
 
 namespace NumberHelper
 {
+    /// <summary>
+    /// Inserts bits of the 2nd number starting from position startPosition to endPosition
+    /// to the 1st number.
+    /// </summary>
     public class NumberHelper
-    {
-        private static int[] IntToBiteArray(int number)
+    { 
+        #region private fields
+        private const int RightBorder = 31;
+        private const int LeftBorder = 0;
+        #endregion
+
+        #region public
+        /// <summary>
+        /// method InsertNumber Inserts bits of the 2nd number starting from position startPosition to endPosition
+        /// to the 1st number
+        /// </summary>
+        /// <param name="number1"></param>
+        /// <param name="number2"></param>
+        /// <param name="startPosition"></param>
+        /// <param name="endPosition"></param>
+        /// <returns>Int32 number</returns>
+        public static int InsertNumber(int number1, int number2, int startPosition, int endPosition)
         {
-            BitArray b = new BitArray(new int[] { number });
-            var bitArray = new int[b.Count];
-            for (int i = 0; i < b.Length; i++)
-            {
-                if (b[i] == true)
-                {
-                    bitArray[i] = 1;
-                }
-                if (b[i] == false)
-                {
-                    bitArray[i] = 0;
-                }
+            if (startPosition > endPosition)
+                throw new ArgumentException($"{nameof(startPosition)} must be less than {nameof(endPosition)}");
 
-            }
+            if ((startPosition < LeftBorder) || (startPosition > RightBorder) || (endPosition < LeftBorder) || (endPosition > RightBorder))
+                throw new ArgumentException($"{nameof(startPosition)} and {nameof(endPosition)} must be greater than 0 and less than 32");
 
-            return bitArray;
+            int mask = ((2 << (endPosition - startPosition)) - 1) << startPosition;
+            return (number1 & ~mask) | ((number2 << startPosition) & mask);
         }
-        private static int BitStringToInt(string bits)
-        {
-            var reversedBits = bits.Reverse().ToArray();
-            var num = 0;
-            for (var power = 0; power < reversedBits.Count(); power++)
-            {
-                var currentBit = reversedBits[power];
-                if (currentBit == '1')
-                {
-                    var currentNum = (int)Math.Pow(2, power);
-                    num += currentNum;
-                }
-            }
+        #endregion
 
-            return num;
-        }
-        public static int InsertNumber(int firstIntNumber, int secondIntNumber, int i, int j)
-        {
-            if(i<0 || j<0)
-            {
-                throw new ArgumentException("The bit position can't be less than 0");
-            }
-
-           
-            int[] supportArrayFirst = IntToBiteArray(firstIntNumber);
-            int[] supportArraySecond = IntToBiteArray(secondIntNumber);
-
-            int[] littleSecondArray = new int[j - i + 1];
-
-            for (int k = 0; k < j-i+1; k++)
-            {
-                littleSecondArray[k] = supportArraySecond[k]; 
-            }   
-           
-            
-            for (int l = i, k = 0; l<j ; l++, k++)
-            {
-                supportArrayFirst[l] = littleSecondArray[k];
-            }
-            Array.Reverse(supportArrayFirst);
-            
-            string supportArrayFirstToString = null;
-            for (int l = 0; l < supportArrayFirst.Length; l++)
-            {
-                supportArrayFirstToString = supportArrayFirstToString + supportArrayFirst[l];
-            }
-            return BitStringToInt(supportArrayFirstToString);
-
-        }
     }
 }

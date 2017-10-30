@@ -1,18 +1,24 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Data;
 
 namespace FilterDigitLib
 {
     public class Filter
     {
-        public static ArrayList FilterDigit(int  number, params int[] listInts)
+        public static List<int> FilterDigit(int  number, params int[] listInts)
         {
+
+            if (listInts == null)
+            {
+                throw new ArgumentNullException();
+            }
             if (listInts.Length == 0)
             {
                 throw new ArgumentException();
             }
-            ArrayList listFilter = new ArrayList();
+            List<int> listFilter = new List<int>();
             for (int i = 0; i < listInts.Length; i++)
             {
                 string supportString = listInts[i].ToString();
